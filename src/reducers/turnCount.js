@@ -1,7 +1,10 @@
 const teams = (state = 0, action) => {
   switch (action.type) {
-    case 'UP_TURN':
-      return state++
+    case 'INCREASE_TURN_COUNT':
+      console.log(action, state)
+      state++
+      return state
+
     default:
       return state
   }
