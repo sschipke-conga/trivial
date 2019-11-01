@@ -5,7 +5,6 @@ import { bindActionCreators } from 'redux';
 import {setTeams, setQuestions} from '../../actions/index';
 import {fetchQuestions} from '../../util/apiCalls';
 import './Form.scss';
-console.log(setTeams)
 
 export class Form extends Component {
   constructor() {
@@ -93,8 +92,6 @@ export class Form extends Component {
 
 export const mapDispatchToProps = (dispatch) => 
   bindActionCreators({setTeams, setQuestions}, dispatch)
-  
-  console.log(mapDispatchToProps)
 
 export default connect(null, mapDispatchToProps)(Form);
 

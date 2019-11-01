@@ -15,7 +15,6 @@ class App extends Component {
   }
   render() {
     const {teams,questions} = this.props
-    console.log(teams)
   return (
     <div className="app">
       {questions.length === 0 ? <Route exact path='/' render={(props) => <Form {...props} />} /> : <Route exact path='/' render={(props) => <Board {...props} />} />}

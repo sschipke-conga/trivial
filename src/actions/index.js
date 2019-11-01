@@ -12,3 +12,7 @@ export const setCurrentQuestion = (currentQuestion) => ({
   type: 'SET_CURRENT_QUESTION',
   currentQuestion
 })
+
+export const increaseTurnCount = () => ({
+  type: 'INCREASE_TURN_COUNT'
+})
