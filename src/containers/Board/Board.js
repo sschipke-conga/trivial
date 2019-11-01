@@ -1,14 +1,32 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import {setCurrentQuestion, setQuestions} from '../../actions/index';
 export class Board extends Component {
   constructor() {
     super()
   }
 
+  componentDidMount() {
+    console.log('mounted', new Date())
+    this.updateCurrentQuestion()
+  }
+
+  updateCurrentQuestion = () => {
+    const {questions, currentQuestion, setCurrentQuestion, setQuestions} = this.props;
+    console.log('qs before --->', questions)
+    console.log('current before --->', currentQuestion)
+    const selectedCurrentQuestion = questions.pop();
+    console.log('result of pop',selectedCurrentQuestion)
+    console.log('?s after --->',questions)
+    setQuestions(questions);
+    setCurrentQuestion(selectedCurrentQuestion);
+
+
+  }
+
   render() {
-    console.log(this.props)
-    const {teams} = this.props
+    const {teams, currentQuestion} = this.props
     return (
       <div className="board">
         <div className="board-team-one">
@@ -31,7 +49,10 @@ export class Board extends Component {
 
 export const mapStateToProps = state => ({
   questions: state.questions,
-  teams: state.teams
+  teams: state.teams,
+  currentQuestion: state.currentQuestion
 })
 
-export default connect(mapStateToProps)(Board)
+export const mapDispatchToProps = dispatch => bindActionCreators({setQuestions, setCurrentQuestion}, dispatch)
+
+export default connect(mapStateToProps, mapDispatchToProps)(Board)

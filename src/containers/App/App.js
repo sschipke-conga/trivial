@@ -18,7 +18,7 @@ class App extends Component {
     console.log(teams)
   return (
     <div className="app">
-      {teams.length === 0 ? <Route exact path='/' render={(props) => <Form {...props} />} /> : <Route exact path='/' render={(props) => <Board {...props} />} />}
+      {questions.length === 0 ? <Route exact path='/' render={(props) => <Form {...props} />} /> : <Route exact path='/' render={(props) => <Board {...props} />} />}
     </div>
   )}
 }

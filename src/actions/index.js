@@ -7,3 +7,8 @@ export const setQuestions = (questions) => ({
   type: 'SET_QUESTIONS',
   questions
 })
+
+export const setCurrentQuestion = (currentQuestion) => ({
+  type: 'SET_CURRENT_QUESTION',
+  currentQuestion
+})
