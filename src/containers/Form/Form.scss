@@ -1,0 +1,32 @@
+form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 90vw;
+}
+
+label {
+  font-size: 1em;
+  display: block;
+  margin: 10px 0;
+}
+
+#teamOne, #teamTwo {
+  width: 300px;
+  font-size: 1.5em;
+}
+.selection-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px;
+  label, input, select {
+    width: 60%;
+  }
+}
+
+.play-button {
+  margin-top: 15px;
+  width: 60%;
+  height: 30px;
+}

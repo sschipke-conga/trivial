@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import './Form.css';
+import './Form.scss';
 
 class Form extends Component {
   constructor() {
@@ -24,14 +24,15 @@ class Form extends Component {
     return (
       <form>
         <div className="team1-div">
-          <label htmlFor="name-team1">Team 1 Name</label>
+          <label className="team-label" htmlFor="name-team1">Team 1 Name</label>
           <input type="text" id="teamOne" maxLength="20" value={teamOne}
           onChange={this.handleChange} placeholder="Team 1 name" required />
         </div>
         <div className="selection-div">
+          <h1>Welcome to It's not <span>small</span> it's <span>Trivial</span>!</h1>
           <label htmlFor="amount">Choose the number of rounds (up to 10)</label>
           <input type="number" id="amount" min="1" max="10" value={amount}
-          onChange={this.handleChange} required/>
+          placeholder="number of rouns" onChange={this.handleChange} required/>
           <label htmlFor="category">Select a category</label>
           <select value={category}
             onChange={this.handleChange} id="category">
@@ -48,8 +49,9 @@ class Form extends Component {
             <option value="" defaultValue>Any</option>
             <option value="easy">Easy</option>
             <option value="medium">Medium</option>
-            <option value="hard">hard</option>
+            <option value="hard">Hard</option>
           </select>
+          <button className="play-button" type="submit">Play!</button>
         </div>
         <div className="team2-div">
           <label htmlFor="name-team1">Team 1 Name</label>
@@ -57,7 +59,6 @@ class Form extends Component {
           onChange={this.handleChange} value={teamTwo}
           placeholder="Team 2 name" required />
         </div>
-        <button type="submit">Play!</button>
       </form>
     )
   }

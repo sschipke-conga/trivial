@@ -6,7 +6,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import rootReducer from './reducers';
 import App from './containers/App/App';
 import { BrowserRouter as Router } from 'react-router-dom'
-import './index.css';
+import './index.scss';
 import * as serviceWorker from './serviceWorker';
 
 const store = createStore(rootReducer, composeWithDevTools())
