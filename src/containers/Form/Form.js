@@ -2,27 +2,54 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import {setTeams, setQuestions} from '../../actions/index';
+import {fetchQuestions} from '../../util/apiCalls';
 import './Form.scss';
+console.log(setTeams)
 
-class Form extends Component {
+export class Form extends Component {
   constructor() {
     super() 
     this.state = {
       teamOne:'',
       teamTwo: '',
-      amount: null,
-      category: null,
-      difficulty: null
+      amount: '',
+      category: '',
+      difficulty: ''
     }
   }
 
   handleChange = (e) => {
     this.setState({[e.target.id]:e.target.value})
   }
+
+  handleSubmit = async (e) => {
+    e.preventDefault()
+    this.handleQuestions()
+    this.handleTeams()
+  }
+
+  handleTeams = () => {
+    const { teamOne, teamTwo } = this.state;
+    const {setTeams} = this.props;
+    const teams = [{
+      name: teamOne,
+      score: 0
+    }, { name: teamTwo, score: 0 }]
+    setTeams(teams)
+  }
+
+  handleQuestions = async () => {
+    const {amount, category, difficulty} = this.state;
+    const {setQuestions} = this.props;
+    let questions = await fetchQuestions((amount*2), category, difficulty);
+    setQuestions(questions)
+  }
+
   render() {
     const { teamOne, amount, category, difficulty, teamTwo } = this.state;
     return (
-      <form>
+      <form onSubmit={this.handleSubmit}>
         <div className="team1-div">
           <label className="team-label" htmlFor="name-team1">Team 1 Name</label>
           <input type="text" id="teamOne" maxLength="20" value={teamOne}
@@ -32,7 +59,7 @@ class Form extends Component {
           <h1>Welcome to It's not <span>small</span> it's <span>Trivial</span>!</h1>
           <label htmlFor="amount">Choose the number of rounds (up to 10)</label>
           <input type="number" id="amount" min="1" max="10" value={amount}
-          placeholder="number of rouns" onChange={this.handleChange} required/>
+          placeholder="number of rounds" onChange={this.handleChange} required/>
           <label htmlFor="category">Select a category</label>
           <select value={category}
             onChange={this.handleChange} id="category">
@@ -64,4 +91,13 @@ class Form extends Component {
   }
 }
 
-export default Form;
+export const mapDispatchToProps = (dispatch) => 
+  bindActionCreators({setTeams, setQuestions}, dispatch)
+  
+  console.log(mapDispatchToProps)
+
+export default connect(null, mapDispatchToProps)(Form);
+
+Form.propTypes = {
+  setTeams: PropTypes.func
+}
