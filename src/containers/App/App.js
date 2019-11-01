@@ -5,7 +5,8 @@ import { connect } from 'react-redux';
 
 
 //components
-import Form from '../Form/Form'
+import Form from '../Form/Form';
+import Board from '../Board/Board'
 import './App.scss';
 
 class App extends Component {
@@ -13,13 +14,18 @@ class App extends Component {
     super();
   }
   render() {
+    const {teams,questions} = this.props
+    console.log(teams)
   return (
-    <Form />
+    <div className="app">
+      {teams.length === 0 ? <Route exact path='/' render={(props) => <Form {...props} />} /> : <Route exact path='/' render={(props) => <Board {...props} />} />}
+    </div>
   )}
 }
 
-const mapStateToProps = (state) => ({
-  teams: state.teams
+export const mapStateToProps = (state) => ({
+  teams: state.teams,
+  questions: state.questions
 })
 
 export default connect(mapStateToProps)(App);
