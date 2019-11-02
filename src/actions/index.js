@@ -1,3 +1,5 @@
+
+
 export const setTeams = (teams) => ({
   type: 'SET_TEAMS',
   teams
@@ -28,4 +30,8 @@ export const updateScore = () => ({
 
 export const resetCurrentQuestion = () => ({
   type: 'RESET_CURRENT_QUESTION'
+})
+
+export const setHaveQuestions = () => ({
+  type: 'HAVE_QUESTIONS'
 })

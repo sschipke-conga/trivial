@@ -27,7 +27,7 @@ export class Board extends Component {
   }
 
   submitAnswer = (e) => {
-    let {currentQuestion, increaseTurnCount, questions, currentTeam, setCurrentTeam, teams, turnCount, updateScore} = this.props
+    let {currentQuestion, increaseTurnCount, currentTeam, setCurrentTeam, teams, turnCount, updateScore} = this.props
     console.log(e.target.name, currentQuestion.correct_answer,this.props)
     increaseTurnCount()
     this.updateCurrentQuestion()
@@ -41,7 +41,7 @@ export class Board extends Component {
   }
 
   render() {
-    const {teams, currentQuestion} = this.props
+    const {teams, currentQuestion, currentTeam, questions} = this.props
     return (
       <div className="board">
         <div className="board-team-one">
@@ -55,7 +55,11 @@ export class Board extends Component {
               <h3 className="difficulty">{currentQuestion.difficulty}</h3>
             </div>
             <h2 className="question">{currentQuestion.question}</h2>
-            <div className="answers"><Answers submitAnswer={this.submitAnswer} answers={[currentQuestion.correct_answer, ...currentQuestion.incorrect_answers]}/></div>
+            <div className="answers"><Answers submitAnswer={this.submitAnswer} answers={[currentQuestion.correct_answer, ...currentQuestion.incorrect_answers]}/>
+            <h4>{currentTeam.name}, your turn!</h4>
+            {questions.length !== 0 && <h5>{questions.length+1} questions left</h5>}
+            {questions.length === 0 && <h5>Last question!</h5>}
+            </div>
           </div>}
         </div>
         <div className="board-team-two">
