@@ -2,11 +2,13 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import {determineWinner} from '../../util/helperFuncs';
 
 
 //components
 import Form from '../Form/Form';
-import Board from '../Board/Board'
+import Board from '../Board/Board';
+import EndGame from '../../components/EndGame/EndGame'
 import './App.scss';
 
 class App extends Component {
@@ -19,7 +21,7 @@ class App extends Component {
     <div className="app">
       {!questions.length && !teams.length && <Route exact path='/' render={(props) => <Form {...props} />} />}
       {haveQuestions  && !haveWinner && <Route path='/' render={(props) => <Board {...props} />} />}
-      {haveWinner && <h1>Winner</h1>}
+      {haveWinner && <EndGame />}
     </div>
   )}
 }
@@ -29,7 +31,8 @@ export const mapStateToProps = (state) => ({
   questions: state.questions,
   currentQuestion: state.currentQuestion,
   haveWinner: state.haveWinner,
-  haveQuestions: state.haveQuestions
+  haveQuestions: state.haveQuestions,
+  haveWinner: state.haveWinner
 })
 
 export default connect(mapStateToProps)(App);

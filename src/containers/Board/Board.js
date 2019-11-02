@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import {determineCurrentTeam} from '../../util/helperFuncs'
-import {setCurrentQuestion, setQuestions, increaseTurnCount, setCurrentTeam, updateScore} from '../../actions/index';
-import Answers from '../../components/Answers';
+import {determineCurrentTeam, determineWinner} from '../../util/helperFuncs'
+import {setCurrentQuestion, setQuestions, increaseTurnCount, setCurrentTeam, updateScore, setHaveWinner} from '../../actions/index';
+import Answers from '../../components/Answers/Answers';
 import './Board.scss';
 export class Board extends Component {
   constructor() {
@@ -27,14 +27,17 @@ export class Board extends Component {
   }
 
   submitAnswer = (e) => {
-    let {currentQuestion, increaseTurnCount, currentTeam, setCurrentTeam, teams, turnCount, updateScore} = this.props
-    console.log(e.target.name, currentQuestion.correct_answer,this.props)
-    increaseTurnCount()
-    this.updateCurrentQuestion()
+    let {currentQuestion, increaseTurnCount, currentTeam, setCurrentTeam, teams, turnCount, updateScore, questions, setHaveWinner} = this.props
     if (e.target.name === currentQuestion.correct_answer) {
       currentTeam.score++
       updateScore()
     }
+    if (!questions.length) {
+      setHaveWinner()
+      return null;
+    }
+    increaseTurnCount()
+    this.updateCurrentQuestion()
     let newTurnCount = turnCount + 1
     currentTeam = teams[determineCurrentTeam(newTurnCount)];
     setCurrentTeam(currentTeam)
@@ -79,6 +82,6 @@ export const mapStateToProps = state => ({
   currentTeam: state.currentTeam
 })
 
-export const mapDispatchToProps = dispatch => bindActionCreators({setQuestions, setCurrentQuestion, increaseTurnCount, setCurrentTeam, updateScore}, dispatch)
+export const mapDispatchToProps = dispatch => bindActionCreators({setQuestions, setCurrentQuestion, increaseTurnCount, setCurrentTeam, updateScore, setHaveWinner}, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(Board)
