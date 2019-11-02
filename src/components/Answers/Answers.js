@@ -1,5 +1,5 @@
 import React from 'react';
-import {shuffle} from '../util/helperFuncs';
+import {shuffle} from '../../util/helperFuncs';
 
 const Answers = ({answers, submitAnswer}) => {
   const shuffledAnswers = shuffle(answers).map((answer, i) => 
