@@ -2,10 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import {setTeams, setQuestions} from '../../actions/index';
+import {setTeams, setQuestions, setHaveQuestions} from '../../actions/index';
 import {fetchQuestions} from '../../util/apiCalls';
 import './Form.scss';
-console.log(setTeams)
 
 export class Form extends Component {
   constructor() {
@@ -41,9 +40,10 @@ export class Form extends Component {
 
   handleQuestions = async () => {
     const {amount, category, difficulty} = this.state;
-    const {setQuestions} = this.props;
+    const {setQuestions, setHaveQuestions} = this.props;
     let questions = await fetchQuestions((amount*2), category, difficulty);
     setQuestions(questions)
+    setHaveQuestions()
   }
 
   render() {
@@ -92,9 +92,7 @@ export class Form extends Component {
 }
 
 export const mapDispatchToProps = (dispatch) => 
-  bindActionCreators({setTeams, setQuestions}, dispatch)
-  
-  console.log(mapDispatchToProps)
+  bindActionCreators({setTeams, setQuestions, setHaveQuestions}, dispatch)
 
 export default connect(null, mapDispatchToProps)(Form);
 

@@ -1,8 +1,10 @@
 const teams = (state = [], action) => {
   switch (action.type) {
     case 'SET_TEAMS':
-      console.log('reducer', action)
       return action.teams
+
+      case 'UPDATE_SCORE':
+        return [...state]
       
     default:
       return state

@@ -1,0 +1,16 @@
+.board {
+  display: flex;
+}
+.questions-div {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 50%;
+  .question-headers {
+    display: flex;
+  }
+  h3 {
+    width: 20%;
+  }
+}

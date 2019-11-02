@@ -5,7 +5,8 @@ import { connect } from 'react-redux';
 
 
 //components
-import Form from '../Form/Form'
+import Form from '../Form/Form';
+import Board from '../Board/Board'
 import './App.scss';
 
 class App extends Component {
@@ -13,13 +14,22 @@ class App extends Component {
     super();
   }
   render() {
+    const {teams,questions, haveWinner, haveQuestions} = this.props
   return (
-    <Form />
+    <div className="app">
+      {!questions.length && !teams.length && <Route exact path='/' render={(props) => <Form {...props} />} />}
+      {haveQuestions  && !haveWinner && <Route path='/' render={(props) => <Board {...props} />} />}
+      {haveWinner && <h1>Winner</h1>}
+    </div>
   )}
 }
 
-const mapStateToProps = (state) => ({
-  teams: state.teams
+export const mapStateToProps = (state) => ({
+  teams: state.teams,
+  questions: state.questions,
+  currentQuestion: state.currentQuestion,
+  haveWinner: state.haveWinner,
+  haveQuestions: state.haveQuestions
 })
 
 export default connect(mapStateToProps)(App);
