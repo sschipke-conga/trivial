@@ -9,3 +9,10 @@ export const shuffle = answers => {
   }
   return answers;
 }
+
+export const determineCurrentTeam = (turnCount) => {
+  if (turnCount % 2 === 0) {
+    return 1
+  } 
+  return 0
+}

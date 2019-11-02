@@ -1,16 +1,20 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import {setCurrentQuestion, setQuestions, increaseTurnCount} from '../../actions/index';
+import {determineCurrentTeam} from '../../util/helperFuncs'
+import {setCurrentQuestion, setQuestions, increaseTurnCount, setCurrentTeam} from '../../actions/index';
 export class Board extends Component {
   constructor() {
     super()
   }
 
   componentDidMount() {
-    const {increaseTurnCount} = this.props
-    this.updateCurrentQuestion()
+    const {increaseTurnCount, turnCount, teams, setCurrentTeam} = this.props
     increaseTurnCount();
+    this.updateCurrentQuestion()
+    let newTurnCount = turnCount + 1
+    const currentTeam = teams[determineCurrentTeam(newTurnCount)];
+    setCurrentTeam(currentTeam)
   }
 
   updateCurrentQuestion = () => {
@@ -18,8 +22,6 @@ export class Board extends Component {
     const selectedCurrentQuestion = questions.pop();
     setQuestions(questions);
     setCurrentQuestion(selectedCurrentQuestion);
-
-
   }
 
   render() {
@@ -47,9 +49,10 @@ export class Board extends Component {
 export const mapStateToProps = state => ({
   questions: state.questions,
   teams: state.teams,
-  currentQuestion: state.currentQuestion
+  currentQuestion: state.currentQuestion,
+  turnCount: state.turnCount
 })
 
-export const mapDispatchToProps = dispatch => bindActionCreators({setQuestions, setCurrentQuestion, increaseTurnCount}, dispatch)
+export const mapDispatchToProps = dispatch => bindActionCreators({setQuestions, setCurrentQuestion, increaseTurnCount, setCurrentTeam}, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(Board)
