@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import {determineCurrentTeam} from '../../util/helperFuncs'
 import {setCurrentQuestion, setQuestions, increaseTurnCount, setCurrentTeam} from '../../actions/index';
-import './Board.scss'
+import Answers from '../../components/Answers';
+import './Board.scss';
 export class Board extends Component {
   constructor() {
     super()
@@ -35,9 +36,12 @@ export class Board extends Component {
         </div>
         <div className="question-div">
           {currentQuestion&&<div className="question-header-div">
-            <h3 className="category">{currentQuestion.category}</h3>
+            <div className="question-headers">
+              <h3 className="category">{currentQuestion.category}</h3>
+              <h3 className="difficulty">{currentQuestion.difficulty}</h3>
+            </div>
             <h2 className="question">{currentQuestion.question}</h2>
-            <h3 className="difficulty">{currentQuestion.difficulty}</h3>
+            <div className="answers"><Answers answers={[currentQuestion.correct_answer, ...currentQuestion.incorrect_answers]}/></div>
           </div>}
         </div>
         <div className="board-team-two">
