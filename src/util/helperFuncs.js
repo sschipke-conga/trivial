@@ -1,6 +1,5 @@
 export const shuffle = answers => {
   var m = answers.length, t, i;
-  console.log(m)
   while (m) {
     i = Math.floor(Math.random() * m--);
     t = answers[m];
@@ -15,4 +14,13 @@ export const determineCurrentTeam = (turnCount) => {
     return 1
   } 
   return 0
+}
+
+export const determineWinner = teams => {
+  if(teams[0].score === teams[1].score) {
+    return false
+  }
+  return teams.sort((teamOne, teamTwo) => {
+    return teamOne.score-teamTwo.score
+  })[0]
 }
