@@ -1,0 +1,9 @@
+.board {
+  display: flex;
+}
+.questions-div {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 50%;
+}
