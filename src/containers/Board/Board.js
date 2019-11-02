@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import {determineCurrentTeam} from '../../util/helperFuncs'
-import {setCurrentQuestion, setQuestions, increaseTurnCount, setCurrentTeam} from '../../actions/index';
+import {setCurrentQuestion, setQuestions, increaseTurnCount, setCurrentTeam, updateScore} from '../../actions/index';
 import Answers from '../../components/Answers';
 import './Board.scss';
 export class Board extends Component {
@@ -26,6 +26,20 @@ export class Board extends Component {
     setCurrentQuestion(selectedCurrentQuestion);
   }
 
+  submitAnswer = (e) => {
+    let {currentQuestion, increaseTurnCount, questions, currentTeam, setCurrentTeam, teams, turnCount, updateScore} = this.props
+    console.log(e.target.name, currentQuestion.correct_answer,this.props)
+    increaseTurnCount()
+    this.updateCurrentQuestion()
+    if (e.target.name === currentQuestion.correct_answer) {
+      currentTeam.score++
+      updateScore()
+    }
+    let newTurnCount = turnCount + 1
+    currentTeam = teams[determineCurrentTeam(newTurnCount)];
+    setCurrentTeam(currentTeam)
+  }
+
   render() {
     const {teams, currentQuestion} = this.props
     return (
@@ -41,7 +55,7 @@ export class Board extends Component {
               <h3 className="difficulty">{currentQuestion.difficulty}</h3>
             </div>
             <h2 className="question">{currentQuestion.question}</h2>
-            <div className="answers"><Answers answers={[currentQuestion.correct_answer, ...currentQuestion.incorrect_answers]}/></div>
+            <div className="answers"><Answers submitAnswer={this.submitAnswer} answers={[currentQuestion.correct_answer, ...currentQuestion.incorrect_answers]}/></div>
           </div>}
         </div>
         <div className="board-team-two">
@@ -57,9 +71,10 @@ export const mapStateToProps = state => ({
   questions: state.questions,
   teams: state.teams,
   currentQuestion: state.currentQuestion,
-  turnCount: state.turnCount
+  turnCount: state.turnCount,
+  currentTeam: state.currentTeam
 })
 
-export const mapDispatchToProps = dispatch => bindActionCreators({setQuestions, setCurrentQuestion, increaseTurnCount, setCurrentTeam}, dispatch)
+export const mapDispatchToProps = dispatch => bindActionCreators({setQuestions, setCurrentQuestion, increaseTurnCount, setCurrentTeam, updateScore}, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(Board)

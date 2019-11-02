@@ -14,17 +14,21 @@ class App extends Component {
     super();
   }
   render() {
-    const {teams,questions} = this.props
+    const {teams,questions, haveWinner} = this.props
   return (
     <div className="app">
-      {questions.length === 0 ? <Route exact path='/' render={(props) => <Form {...props} />} /> : <Route exact path='/' render={(props) => <Board {...props} />} />}
+      {!questions.length && !teams.length && <Route exact path='/' render={(props) => <Form {...props} />} />}
+      {questions.length  && !haveWinner && <Route path='/' render={(props) => <Board {...props} />} />}
+      {haveWinner && <h1>Winner</h1>}
     </div>
   )}
 }
 
 export const mapStateToProps = (state) => ({
   teams: state.teams,
-  questions: state.questions
+  questions: state.questions,
+  currentQuestion: state.currentQuestion,
+  haveWinner: state.haveWinner
 })
 
 export default connect(mapStateToProps)(App);
