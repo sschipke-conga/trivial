@@ -35,3 +35,7 @@ export const resetCurrentQuestion = () => ({
 export const setHaveQuestions = () => ({
   type: 'HAVE_QUESTIONS'
 })
+
+export const setHaveWinner = () => ({
+  type: 'WINNER'
+})
