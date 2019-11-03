@@ -1,4 +1,5 @@
 import currentQuestion from './currentQuestion';
+import currentTeam from './currentTeam';
 
 describe('currentQuestion reducer', () => {
   it('should return the initial state of NULL', () => {
@@ -51,6 +52,24 @@ describe('currentQuestion reducer', () => {
     const reset = currentQuestion(mockCurrentQuestion, mockReset);
     expect(reset).toEqual(null)
     
-
   })
+})
+
+describe('currentTeam reducer', () => {
+  it('should set the initial state of null', () => {
+    const expected = null;
+    const result = currentTeam(undefined, {});
+    expect(result).toEqual(expected);
+  });
+  it('should set the state with the current team', () => {
+    const mockTeam = {
+      name: "Let's Get Quizzacle",
+      score: 0
+    };
+    const mockAction = {
+      type: 'SET_CURRENT_TEAM',
+      team: mockTeam
+    }
+    expect(currentTeam(null, mockAction)).toEqual(mockTeam)
+  });
 })
