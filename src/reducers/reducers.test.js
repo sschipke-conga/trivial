@@ -4,6 +4,7 @@ import haveQuestions from './haveQuestions';
 import haveWinner from './haveWinner';
 import questions from './questions';
 import teams from './teams';
+import turnCount from './turnCount';
 
 describe('currentQuestion reducer', () => {
   it('should return the initial state of NULL', () => {
@@ -198,4 +199,31 @@ describe('teams reducer', () => {
     };
     expect(teams(firstResult, newMockAction)).toEqual(expected)
   })    
+})
+
+describe('turnCount reducer', () => {
+  it('should return the inital state (0)', () => {
+    expect(turnCount(undefined, {})).toEqual(0)
+  })
+  it('should increase the turnCount', () => {
+    const firstResult = turnCount(undefined, {});
+    expect(firstResult).toEqual(0)
+    const mockAction = {
+      type: 'INCREASE_TURN_COUNT'
+    }
+    expect(turnCount(firstResult, mockAction)).toEqual(1)
+  });
+  it('should increase the turnCount multiple times', () => {
+    const firstResult = turnCount(undefined, {});
+    expect(firstResult).toEqual(0)
+    const mockAction = {
+      type: 'INCREASE_TURN_COUNT'
+    }
+    const secondResult = turnCount(firstResult, mockAction)
+    expect(secondResult).toEqual(1);
+    const thirdResult = turnCount(secondResult, mockAction)
+    expect(thirdResult).toEqual(2)
+    const fourthResult = turnCount(thirdResult, mockAction)
+    expect(fourthResult).toEqual(3)
+  })
 })
