@@ -24,3 +24,7 @@ export const determineWinner = teams => {
     return teamOne.score-teamTwo.score
   })[0]
 }
+
+export const capDifficulty = difficulty => {
+  return difficulty[0].toUpperCase() + difficulty.slice(1)
+}
