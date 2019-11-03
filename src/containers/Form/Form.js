@@ -109,5 +109,7 @@ export const mapDispatchToProps = (dispatch) =>
 export default connect(null, mapDispatchToProps)(Form);
 
 Form.propTypes = {
-  setTeams: PropTypes.func
+  setTeams: PropTypes.func,
+  setQuestions: PropTypes.func, 
+  setHaveQuestions: PropTypes.func
 }
