@@ -2,6 +2,7 @@ import currentQuestion from './currentQuestion';
 import currentTeam from './currentTeam';
 import haveQuestions from './haveQuestions';
 import haveWinner from './haveWinner';
+import questions from './questions';
 
 describe('currentQuestion reducer', () => {
   it('should return the initial state of NULL', () => {
@@ -97,5 +98,52 @@ describe('haveWinner reducer', () => {
       type: 'WINNER'
     }
     expect(haveWinner(false, mockAction)).toEqual(true)
+  })
+})
+
+describe('questions reducers', () => {
+  it('should return the initial state', () => {
+    expect(questions(undefined, {})).toEqual([])
+  })
+  it('should return state with questions', () => {
+    const mockQuestions = [{
+      "category": "Sports",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "At which bridge does the annual Oxford and Cambridge boat race start?",
+      "correct_answer": "Putney",
+      "incorrect_answers": [
+        "Hammersmith",
+        "Vauxhall ",
+        "Battersea"
+      ]
+    },
+      {
+        "category": "Entertainment: Video Games",
+        "type": "multiple",
+        "difficulty": "easy",
+        "question": "Who is Sonic&#039;s sidekick?",
+        "correct_answer": "Tails",
+        "incorrect_answers": [
+          "Shadow",
+          "Amy",
+          "Knuckles"
+        ]
+      },
+      {
+        "category": "Politics",
+        "type": "boolean",
+        "difficulty": "easy",
+        "question": "There was a satirical candidate named &quot;Deez Nuts&quot; running in the 2016 US presidential elections.",
+        "correct_answer": "True",
+        "incorrect_answers": [
+          "False"
+        ]
+      }];
+      const mockAction = {
+        type: 'SET_QUESTIONS',
+        questions: mockQuestions
+      }
+      expect(questions(undefined, mockAction)).toEqual(mockQuestions)
   })
 })
