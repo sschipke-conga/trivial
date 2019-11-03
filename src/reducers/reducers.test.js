@@ -1,5 +1,6 @@
 import currentQuestion from './currentQuestion';
 import currentTeam from './currentTeam';
+import haveQuestions from './haveQuestions'
 
 describe('currentQuestion reducer', () => {
   it('should return the initial state of NULL', () => {
@@ -72,4 +73,16 @@ describe('currentTeam reducer', () => {
     }
     expect(currentTeam(null, mockAction)).toEqual(mockTeam)
   });
+})
+
+describe('haveQuestions reducer', () => {
+  it('should set the initial state as false', () => {
+    expect(haveQuestions(undefined, {})).toEqual(false)
+  })
+  it('should set the state to true when "HAVE_QUESTIONS" is the type of the action',() => {
+    const mockAction = {
+      type: 'HAVE_QUESTIONS'
+    }
+    expect(haveQuestions(false, mockAction)).toEqual(true)
+  })
 })
