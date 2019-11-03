@@ -52,7 +52,7 @@ export class Board extends Component {
           <h3 className="score">Score: {teams[0].score}</h3>
         </div>
         <div className="question-div">
-          <div className="question-header-div">
+          {currentQuestion && <div className="question-header-div">
             <div className="question-headers">
               <h3 className="category">{currentQuestion.category}</h3>
               <h3 className="difficulty">{capDifficulty(currentQuestion.difficulty)}</h3>
@@ -63,7 +63,7 @@ export class Board extends Component {
             {questions.length !== 0 && <h5>{questions.length+1} questions left</h5>}
             {questions.length === 0 && <h5>Last question!</h5>}
             </div>
-          </div>
+          </div>}
         </div>
         <div className="board-team-two">
           <h1 className="team-one-name">{teams[1].name}</h1>
