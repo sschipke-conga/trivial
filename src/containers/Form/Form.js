@@ -51,15 +51,16 @@ export class Form extends Component {
     return (
       <form onSubmit={this.handleSubmit}>
         <div className="team1-div">
-          <label className="team-label" htmlFor="name-team1">Team 1 Name</label>
+          <label className="team-label" htmlFor="name-team1">Name of team one</label>
           <input type="text" id="teamOne" maxLength="20" value={teamOne}
           onChange={this.handleChange} placeholder="Team 1 name" required />
         </div>
         <div className="selection-div">
-          <h1>Welcome to It's not <span>small</span> it's <span>Trivial</span>!</h1>
-          <label htmlFor="amount">Choose the number of rounds (up to 10)</label>
+          <h1>Welcome to </h1>
+          <h1>It's not <span className="small">small</span>, it's <span className="trivial">Trivial!</span></h1>
+          <label htmlFor="amount">Number of rounds (up to 10)</label>
           <input type="number" id="amount" min="1" max="10" value={amount}
-          placeholder="number of rounds" onChange={this.handleChange} required/>
+          placeholder="Number of rounds" onChange={this.handleChange} required/>
           <label htmlFor="category">Select a category</label>
           <select value={category}
             onChange={this.handleChange} id="category">
@@ -81,7 +82,7 @@ export class Form extends Component {
           <button className="play-button" type="submit">Play!</button>
         </div>
         <div className="team2-div">
-          <label htmlFor="name-team1">Team 1 Name</label>
+          <label htmlFor="name-team1">Name of team two</label>
           <input type="text" id="teamTwo" maxLength="20" 
           onChange={this.handleChange} value={teamTwo}
           placeholder="Team 2 name" required />
