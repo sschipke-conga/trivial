@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import {setTeams, setQuestions, setHaveQuestions} from '../../actions/index';
 import {fetchQuestions} from '../../util/apiCalls';
+import {cleanEncoding} from '../../util/helperFuncs';
 import './Form.scss';
 
 export class Form extends Component {
@@ -42,7 +43,13 @@ export class Form extends Component {
     const {amount, category, difficulty} = this.state;
     const {setQuestions, setHaveQuestions} = this.props;
     let questions = await fetchQuestions((amount*2), category, difficulty);
-    setQuestions(questions)
+    const cleanedQuestions = questions.map(question => {
+      question.question = cleanEncoding(question.question)
+      question.correct_answer = cleanEncoding(question.correct_answer)
+      question.incorrect_answers = question.incorrect_answers.map(answer => cleanEncoding(answer))
+      return question
+    })
+    setQuestions(cleanedQuestions)
     setHaveQuestions()
   }
 
