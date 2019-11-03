@@ -42,6 +42,7 @@ export class Form extends Component {
   handleQuestions = async () => {
     const {amount, category, difficulty} = this.state;
     const {setQuestions, setHaveQuestions} = this.props;
+    try {
     let questions = await fetchQuestions((amount*2), category, difficulty);
     const cleanedQuestions = questions.map(question => {
       question.question = cleanEncoding(question.question)
@@ -51,6 +52,9 @@ export class Form extends Component {
     })
     setQuestions(cleanedQuestions)
     setHaveQuestions()
+    } catch({message}) {
+      console.log('failed to fetch', message)
+    }
   }
 
   render() {
