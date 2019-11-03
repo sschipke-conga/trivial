@@ -3,6 +3,7 @@ import currentTeam from './currentTeam';
 import haveQuestions from './haveQuestions';
 import haveWinner from './haveWinner';
 import questions from './questions';
+import teams from './teams';
 
 describe('currentQuestion reducer', () => {
   it('should return the initial state of NULL', () => {
@@ -146,4 +147,55 @@ describe('questions reducers', () => {
       }
       expect(questions(undefined, mockAction)).toEqual(mockQuestions)
   })
+})
+
+describe('teams reducer', () => {
+  it('should return the initial state', () => {
+    expect(teams(undefined, {})).toEqual([])
+  })
+  it('should return the state with teams', () => {
+    const mockTeams = [
+      {
+        name: "Let's Get Quizzacle",
+        score: 0
+      }, {
+        name: "Lez Quizzerable",
+        score: 0
+      }]
+    const mockAction = {
+      type: 'SET_TEAMS',
+      teams: mockTeams
+    }
+    expect(teams([], mockAction)).toEqual(mockTeams);
+  })
+  it('should update the score for a team', () => {
+    let mockTeams = [
+      {
+        name: "Let's Get Quizzacle",
+        score: 0
+      }, {
+        name: "Lez Quizzerable",
+        score: 0
+      }];
+    const mockAction = {
+      type: 'SET_TEAMS',
+      teams: mockTeams
+    }
+    let firstResult = teams([], mockAction)
+    expect(firstResult).toEqual(mockTeams);
+    mockTeams[0].score++ ;
+    const expected = [
+      {
+        name: "Let's Get Quizzacle",
+        score: 1
+      }, {
+        name: "Lez Quizzerable",
+        score: 0
+      }];
+
+    const newMockAction = {
+      type: 'UPDATE_SCORE'
+    };
+    expect(teams(firstResult, newMockAction)).toEqual(expected)
+  })    
 })
