@@ -1,0 +1,22 @@
+.end-game-section {
+  background: url(../../images/confetti.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 2em;
+  color: white;
+  height: 100vh;
+}
+
+.end-game-div {
+  background: rgba(0, 0, 0, .9);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+}

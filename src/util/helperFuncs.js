@@ -21,10 +21,17 @@ export const determineWinner = teams => {
     return false
   }
   return teams.sort((teamOne, teamTwo) => {
-    return teamOne.score-teamTwo.score
+    return teamTwo.score-teamOne.score
   })[0]
 }
 
 export const capDifficulty = difficulty => {
   return difficulty[0].toUpperCase() + difficulty.slice(1)
+}
+
+export const cleanEncoding = (string) => {
+  let cleanPhrase = string.replace(/&#039;/g, "'")
+  .replace(/&quot;/g, '"')
+  .replace(/&eacute/g, 'é');
+  return cleanPhrase
 }

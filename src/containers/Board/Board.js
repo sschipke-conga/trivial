@@ -58,8 +58,8 @@ export class Board extends Component {
               <h3 className="difficulty">{capDifficulty(currentQuestion.difficulty)}</h3>
             </div>
             <h2 className="question">{currentQuestion.question}</h2>
-            <div className="answers"><Answers submitAnswer={this.submitAnswer} answers={[currentQuestion.correct_answer, ...currentQuestion.incorrect_answers]}/>
-            <h4>{currentTeam.name}, your turn!</h4>
+            <div className="answers-div"><Answers submitAnswer={this.submitAnswer} answers={[currentQuestion.correct_answer, ...currentQuestion.incorrect_answers]}/>
+            <h4><span className="current-team">{currentTeam.name}</span>, your turn!</h4>
             {questions.length !== 0 && <h5>{questions.length+1} questions left</h5>}
             {questions.length === 0 && <h5>Last question!</h5>}
             </div>

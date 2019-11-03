@@ -9,12 +9,14 @@ export const EndGame = ({teams, turnCount}) => {
 
   return(
     <section className="end-game-section">
+      <div className="end-game-div">
       <h1 className="congrats">Congratulations!</h1>
-    { winningTeam && <div className="ende-game-div">
-    <h2 className="winning-team">{winningTeam.name} you win!</h2>
-    <p className="winning-questions">You answered {winningTeam.score} questions correctly!</p>
-    </div>}
+    {winningTeam && <div className="winning-team-div">
+      <h2 className="winning-team">{winningTeam.name} you win!</h2>
+      <p className="winning-questions">You answered {winningTeam.score} questions correctly!</p>
+      </div>}
     {!winningTeam && <h2>It's a tie! You both win!</h2>}
+    </div>
 
     </section>
   )
