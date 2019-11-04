@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App and EndGame should render the EndGame component if there is a winner 1`] = `
+<div
+  className="app"
+>
+  <Connect(EndGame) />
+</div>
+`;
+
+exports[`App and Form should render the Form component if there are no teams and no questions 1`] = `
+<div
+  className="app"
+>
+  <Route
+    exact={true}
+    path="/"
+    render={[Function]}
+  />
+</div>
+`;
+
+exports[`App should match the snapshot 1`] = `
+<div
+  className="app"
+>
+  <Route
+    path="/"
+    render={[Function]}
+  />
+</div>
+`;

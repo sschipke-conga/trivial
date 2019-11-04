@@ -363,7 +363,6 @@ describe('mapDispatchToProps and mapStateToProps', () => {
       currentTeam: mockState.currentTeam
     };
     const mappedProps = mapStateToProps(mockState)
-
     expect(mappedProps).toEqual(expected)
   })
 })
