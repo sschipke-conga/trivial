@@ -5,50 +5,44 @@ import { fetchQuestions } from '../../util/apiCalls';
 import * as actions from '../../actions';
 
 jest.mock('../../util/apiCalls');
+const mockQuestions = [{
+  "category": "Sports",
+  "type": "multiple",
+  "difficulty": "medium",
+  "question": "At which bridge does the annual Oxford and Cambridge boat race start?",
+  "correct_answer": "Putney",
+  "incorrect_answers": [
+    "Hammersmith",
+    "Vauxhall ",
+    "Battersea"
+  ]
+},
+{
+  "category": "Entertainment: Video Games",
+  "type": "multiple",
+  "difficulty": "easy",
+  "question": "Who is Sonic&#039;s sidekick?",
+  "correct_answer": "Tails",
+  "incorrect_answers": [
+    "Shadow",
+    "Amy",
+    "Knuckles"
+  ]
+},
+{
+  "category": "Politics",
+  "type": "boolean",
+  "difficulty": "easy",
+  "question": "There was a satirical candidate named &quot;Deez Nuts&quot; running in the 2016 US presidential elections.",
+  "correct_answer": "True",
+  "incorrect_answers": [
+    "False"
+  ]
+}]
 
-fetchQuestions.mockImplementation(() => {
-  return Promise.resolve({
-    ok: true,
-    json: () => jest.fn().mockImplementation(() => {
-      return Promise.resolve(
-        [{
-          "category": "Sports",
-          "type": "multiple",
-          "difficulty": "medium",
-          "question": "At which bridge does the annual Oxford and Cambridge boat race start?",
-          "correct_answer": "Putney",
-          "incorrect_answers": [
-            "Hammersmith",
-            "Vauxhall ",
-            "Battersea"
-          ]
-        },
-        {
-          "category": "Entertainment: Video Games",
-          "type": "multiple",
-          "difficulty": "easy",
-          "question": "Who is Sonic&#039;s sidekick?",
-          "correct_answer": "Tails",
-          "incorrect_answers": [
-            "Shadow",
-            "Amy",
-            "Knuckles"
-          ]
-        },
-        {
-          "category": "Politics",
-          "type": "boolean",
-          "difficulty": "easy",
-          "question": "There was a satirical candidate named &quot;Deez Nuts&quot; running in the 2016 US presidential elections.",
-          "correct_answer": "True",
-          "incorrect_answers": [
-            "False"
-          ]
-        }]
-      )
-    })
-  })
-})
+fetchQuestions.mockImplementation(() => 
+  Promise.resolve(mockQuestions)
+  )
 
 const mockTeams = [{
   name: 'Lez Quizzerable',
@@ -61,7 +55,7 @@ actions.setTeams = jest.fn().mockImplementation(() => {
   return mockTeams
 })
 
-actions.haveQuestions = jest.fn()
+actions.setHaveQuestions = jest.fn()
 
 actions.setQuestions = jest.fn()
 
@@ -162,6 +156,14 @@ describe('Form', () => {
     it('should call fetchQuestions', () => {
       wrapper.instance().handleQuestions();
       expect(fetchQuestions).toHaveBeenCalled()
+    })
+    it('should call setQuestions with he correct questions', () => {
+      wrapper.instance().handleQuestions()
+      expect(actions.setQuestions).toHaveBeenCalledWith(mockQuestions)
+    })
+    it('should call setHaveQuestions', () => {
+      wrapper.instance().handleQuestions()
+      expect(actions.setHaveQuestions).toHaveBeenCalled()
     })
   })
 })
