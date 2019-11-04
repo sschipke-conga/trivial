@@ -32,7 +32,9 @@ export const capDifficulty = difficulty => {
 export const cleanEncoding = (string) => {
   let cleanPhrase = string.replace(/&#039;/g, "'")
   .replace(/&quot;/g, '"')
-  .replace(/&eacute/g, 'é');
+  .replace(/&eacute/g, 'é')
+    .replace(/&amp;/g, '&');
+
   return cleanPhrase
 }
 
