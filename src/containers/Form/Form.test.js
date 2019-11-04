@@ -166,4 +166,27 @@ describe('Form', () => {
       expect(actions.setHaveQuestions).toHaveBeenCalled()
     })
   })
+  describe('mapDispatchToProps', () => {
+    it('should call Dispatch with setTeams actions when setTeams is called', () => {
+      const mockDispatch = jest.fn();
+      const actionToDispatch = actions.setTeams('SET_TEAMS', mockTeams)
+      const mappedProps = mapDispatchToProps(mockDispatch)
+      mappedProps.setTeams('SET_TEAMS', mockTeams)
+      expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch)
+    })
+    it('should call Dispatch with setQuestions actions when setQuestions is called', () => {
+      const mockDispatch = jest.fn();
+      const actionToDispatch = actions.setQuestions('SET_QUESTIONS', mockQuestions)
+      const mappedProps = mapDispatchToProps(mockDispatch)
+      mappedProps.setQuestions('SET_QUESTIONS', mockQuestions)
+      expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch)
+    })
+    it('should call Dispatch with setHaveQuestions actions when setHaveQuestions is called', () => {
+      const mockDispatch = jest.fn();
+      const actionToDispatch = actions.setHaveQuestions('SET_HAVE_QUESTIONS')
+      const mappedProps = mapDispatchToProps(mockDispatch)
+      mappedProps.setHaveQuestions('SET_HAVE_QUESTIONS')
+      expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch)
+    })
+  })
 })
