@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import {determineWinner} from '../../util/helperFuncs';
 
 
 //components
@@ -29,3 +28,11 @@ export const mapStateToProps = (state) => ({
 })
 
 export default connect(mapStateToProps)(App);
+
+App.propTypes = {
+  teams: PropTypes.array,
+  questions: PropTypes.array,
+  currentQuestion: PropTypes.object,
+  haveWinner: PropTypes.bool,
+  haveQuestions: PropTypes.bool
+}

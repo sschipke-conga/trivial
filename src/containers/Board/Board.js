@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import {determineCurrentTeam, capDifficulty} from '../../util/helperFuncs'
+import PropTypes from 'prop-types';
+import {determineCurrentTeam, capDifficulty} from '../../util/helperFuncs';
 import {setCurrentQuestion, setQuestions, increaseTurnCount, setCurrentTeam, updateScore, setHaveWinner} from '../../actions/index';
 import Answers from '../../components/Answers/Answers';
 import './Board.scss';
@@ -85,3 +86,17 @@ export const mapStateToProps = state => ({
 export const mapDispatchToProps = dispatch => bindActionCreators({setQuestions, setCurrentQuestion, increaseTurnCount, setCurrentTeam, updateScore, setHaveWinner}, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(Board)
+
+Board.propTypes = {
+  setQuestions: PropTypes.func,
+  increaseTurnCount: PropTypes.func,
+  setCurrentTeam: PropTypes.func,
+  setCurrentQuestion: PropTypes.func,
+  updateScore: PropTypes.func,
+  setHaveWinner: PropTypes.func,
+  teams: PropTypes.array,
+  questions: PropTypes.array,
+  currentQuestion: PropTypes.object,
+  turnCount: PropTypes.number,
+  currentTeam: PropTypes.object
+}
