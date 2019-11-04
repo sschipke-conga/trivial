@@ -17,6 +17,23 @@ exports[`App and Form should render the Form component if there are no teams and
     path="/"
     render={[Function]}
   />
+  0
+</div>
+`;
+
+exports[`App and loading image should render the loading image if there are teams but no questions 1`] = `
+<div
+  className="app"
+>
+  <div
+    className="loading-div"
+  >
+    <img
+      alt="loading: three circles"
+      className="loading-image"
+      src="loadingGIF.gif"
+    />
+  </div>
 </div>
 `;
 
