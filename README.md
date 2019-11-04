@@ -25,9 +25,25 @@ Two teams face off in an epic trivia battle. Players select the number of rounds
 
 ## Screen Shots
 
-Welcome Page
+
+<details>
+  <summary> Start Page </summary>
+
 ![welcome page](./DOCS/form.png)
-Trivia page
-![welcome page](./DOCS/question.png)
-Winner Page
-![welcome page](./DOCS/winner.png)
+
+</details>
+
+<details>
+  <summary> Trivia Page </summary>
+
+![trivia page](./DOCS/question.png)
+
+</details>
+
+<details>
+  <summary> Winner Page </summary>
+
+  ![welcome page](./DOCS/winner.png)
+
+
+</details>
