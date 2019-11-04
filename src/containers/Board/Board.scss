@@ -19,7 +19,7 @@
   width: 50%;
   .question-headers {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     margin-bottom: 15px;
     min-width: 80vw;
     .category {
@@ -30,6 +30,7 @@
     width: 20%;
   }
   .question {
+    text-align: center;
     width: 100%;
   }
   .question-header-div {
