@@ -1,0 +1,161 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Form should match the initial snapshot 1`] = `
+<form
+  onSubmit={[Function]}
+>
+  <div
+    className="team1-div"
+  >
+    <label
+      className="team-label"
+      htmlFor="name-team1"
+    >
+      Name of team one
+    </label>
+    <input
+      id="teamOne"
+      maxLength="20"
+      onChange={[Function]}
+      placeholder="Team 1 name"
+      required={true}
+      type="text"
+      value=""
+    />
+  </div>
+  <div
+    className="selection-div"
+  >
+    <h1>
+      Welcome to 
+    </h1>
+    <h1>
+      It's not 
+      <span
+        className="small"
+      >
+        small
+      </span>
+      , it's 
+      <span
+        className="trivial"
+      >
+        Trivial!
+      </span>
+    </h1>
+    <label
+      htmlFor="amount"
+    >
+      Number of rounds (up to 10)
+    </label>
+    <input
+      id="amount"
+      max="10"
+      min="1"
+      onChange={[Function]}
+      placeholder="Number of rounds"
+      required={true}
+      type="number"
+      value=""
+    />
+    <label
+      htmlFor="category"
+    >
+      Select a category
+    </label>
+    <select
+      id="category"
+      onChange={[Function]}
+      value=""
+    >
+      <option
+        defaultValue={true}
+        value="9"
+      >
+        General Knowledge
+      </option>
+      <option
+        value="11"
+      >
+        Movies
+      </option>
+      <option
+        value="13"
+      >
+        Musicals/Theatre
+      </option>
+      <option
+        value="20"
+      >
+        Mythology
+      </option>
+      <option
+        value="23"
+      >
+        History
+      </option>
+      <option
+        value="17"
+      >
+        Science & Nature
+      </option>
+    </select>
+    <label
+      htmlFor="category"
+    >
+      Select the difficulty
+    </label>
+    <select
+      id="difficulty"
+      onChange={[Function]}
+      value=""
+    >
+      <option
+        defaultValue={true}
+        value=""
+      >
+        Any
+      </option>
+      <option
+        value="easy"
+      >
+        Easy
+      </option>
+      <option
+        value="medium"
+      >
+        Medium
+      </option>
+      <option
+        value="hard"
+      >
+        Hard
+      </option>
+    </select>
+    <button
+      className="play-button"
+      type="submit"
+    >
+      Play!
+    </button>
+  </div>
+  <div
+    className="team2-div"
+  >
+    <label
+      htmlFor="name-team1"
+    >
+      Name of team two
+    </label>
+    <input
+      id="teamTwo"
+      maxLength="20"
+      onChange={[Function]}
+      placeholder="Team 2 name"
+      required={true}
+      type="text"
+      value=""
+    />
+  </div>
+</form>
+`;
