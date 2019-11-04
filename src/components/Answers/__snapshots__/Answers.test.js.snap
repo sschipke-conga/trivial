@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Answers should match the snapshot 1`] = `
+<section
+  className="answers"
+>
+  <button
+    className="answer"
+    key="0"
+    name="b"
+    onClick={[MockFunction]}
+    type="button"
+  >
+    b
+  </button>
+  <button
+    className="answer"
+    key="1"
+    name="d"
+    onClick={[MockFunction]}
+    type="button"
+  >
+    d
+  </button>
+  <button
+    className="answer"
+    key="2"
+    name="a"
+    onClick={[MockFunction]}
+    type="button"
+  >
+    a
+  </button>
+  <button
+    className="answer"
+    key="3"
+    name="c"
+    onClick={[MockFunction]}
+    type="button"
+  >
+    c
+  </button>
+</section>
+`;

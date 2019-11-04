@@ -11,12 +11,7 @@ import Board from '../Board/Board';
 import EndGame from '../../components/EndGame/EndGame'
 import './App.scss';
 
-class App extends Component {
-  constructor() {
-    super();
-  }
-  render() {
-    const {teams,questions, haveWinner, haveQuestions} = this.props
+export const App = ({ teams, questions, haveWinner, haveQuestions }) => {
   return (
     <div className="app">
       {!questions.length && !teams.length && <Route exact path='/' render={(props) => <Form {...props} />} />}
@@ -24,7 +19,6 @@ class App extends Component {
       {haveWinner && <EndGame />}
     </div>
   )}
-}
 
 export const mapStateToProps = (state) => ({
   teams: state.teams,
@@ -32,7 +26,6 @@ export const mapStateToProps = (state) => ({
   currentQuestion: state.currentQuestion,
   haveWinner: state.haveWinner,
   haveQuestions: state.haveQuestions,
-  haveWinner: state.haveWinner
 })
 
 export default connect(mapStateToProps)(App);

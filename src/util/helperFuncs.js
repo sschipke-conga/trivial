@@ -21,7 +21,7 @@ export const determineWinner = teams => {
     return false
   }
   return teams.sort((teamOne, teamTwo) => {
-    return teamTwo.score-teamOne.score
+    return teamTwo.score - teamOne.score
   })[0]
 }
 
@@ -32,6 +32,17 @@ export const capDifficulty = difficulty => {
 export const cleanEncoding = (string) => {
   let cleanPhrase = string.replace(/&#039;/g, "'")
   .replace(/&quot;/g, '"')
-  .replace(/&eacute/g, 'é');
+  .replace(/&eacute/g, 'é')
+    .replace(/&amp;/g, '&');
+
   return cleanPhrase
+}
+
+export const cleanQuestions = (questions) => {
+    return questions.map(question => {
+    question.question = cleanEncoding(question.question)
+    question.correct_answer = cleanEncoding(question.correct_answer)
+    question.incorrect_answers = question.incorrect_answers.map(answer => cleanEncoding(answer))
+    return question
+    })
 }

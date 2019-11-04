@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import {determineWinner} from '../../util/helperFuncs';
 import './EndGame.scss'
 
-export const EndGame = ({teams, turnCount}) => {
+export const EndGame = ({teams}) => {
   const winningTeam = determineWinner(teams)
 
   return(
@@ -24,12 +24,10 @@ export const EndGame = ({teams, turnCount}) => {
 
 export const mapStateToProps = state => ({
   teams: state.teams,
-  turnCount: state.turnCount
 })
 
 export default connect(mapStateToProps)(EndGame);
 
 EndGame.propTypes = {
   teams: PropTypes.array.isRequired,
-  turnCount: PropTypes.number
 }

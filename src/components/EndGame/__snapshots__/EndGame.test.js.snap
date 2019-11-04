@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EndGame should match the snapshot 1`] = `
+<section
+  className="end-game-section"
+>
+  <div
+    className="end-game-div"
+  >
+    <h1
+      className="congrats"
+    >
+      Congratulations!
+    </h1>
+    <h2>
+      It's a tie! You both win!
+    </h2>
+  </div>
+</section>
+`;
+
+exports[`EndGame with ties should match the snapshot if there is no winner (a tie) 1`] = `
+<section
+  className="end-game-section"
+>
+  <div
+    className="end-game-div"
+  >
+    <h1
+      className="congrats"
+    >
+      Congratulations!
+    </h1>
+    <h2>
+      It's a tie! You both win!
+    </h2>
+  </div>
+</section>
+`;

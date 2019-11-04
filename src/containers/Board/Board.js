@@ -20,7 +20,7 @@ export class Board extends Component {
   }
 
   updateCurrentQuestion = () => {
-    const {questions, currentQuestion, setCurrentQuestion, setQuestions} = this.props;
+    const {questions, setCurrentQuestion, setQuestions} = this.props;
     const selectedCurrentQuestion = questions.pop();
     setQuestions(questions);
     setCurrentQuestion(selectedCurrentQuestion);
