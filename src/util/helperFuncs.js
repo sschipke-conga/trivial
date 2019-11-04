@@ -21,7 +21,7 @@ export const determineWinner = teams => {
     return false
   }
   return teams.sort((teamOne, teamTwo) => {
-    return teamTwo.score-teamOne.score
+    return teamTwo.score - teamOne.score
   })[0]
 }
 
