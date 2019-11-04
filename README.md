@@ -16,7 +16,7 @@ Two teams face off in an epic trivia battle. Players select the number of rounds
 ## How to use
 ### Clone down the repo
 
-1. Clone down the repo [here](https://github.com/sschipke/trivial)
+1. Clone down the repo this repo
 2. `cd` in to the cloned directory
 3. in your terminal run  
                           `npm install`
