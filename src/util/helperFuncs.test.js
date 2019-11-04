@@ -1,8 +1,6 @@
 import React from 'react';
 import * as helperFuncs from './helperFuncs';
 
-
-
 describe('determineCurrentTeam', () => {
   it('should determine the current team based on the turnCount by returning 1 or 2', () => {
     expect(helperFuncs.determineCurrentTeam(2)).toEqual(1)
