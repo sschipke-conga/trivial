@@ -7,7 +7,7 @@ import * as helpers from '../../util/helperFuncs';
 jest.mock('../../util/helperFuncs')
 
 jest.mock('../../actions')
-let mockQuestions = [{
+const mockQuestions = [{
   "category": "Sports",
   "type": "multiple",
   "difficulty": "medium",
@@ -42,13 +42,15 @@ let mockQuestions = [{
   ]
 }]
 const mockCurrentQuestion = {
-  "category": "Politics",
-  "type": "boolean",
-  "difficulty": "easy",
-  "question": "There was a satirical candidate named &quot;Deez Nuts&quot; running in the 2016 US presidential elections.",
-  "correct_answer": "True",
+  "category": "Sports",
+  "type": "multiple",
+  "difficulty": "medium",
+  "question": "At which bridge does the annual Oxford and Cambridge boat race start?",
+  "correct_answer": "Putney",
   "incorrect_answers": [
-    "False"
+    "Hammersmith",
+    "Vauxhall ",
+    "Battersea"
   ]
 }
 
@@ -108,5 +110,196 @@ describe('Board', () => {
     it('should call setCurrentTeam after mounting', () => {
       expect(actions.setCurrentTeam).toHaveBeenCalledWith(mockTeams[0])
     })
+  })
+})
+
+describe('updateCurrentQuestion', () => {
+  const mockQuestions = [{
+    "category": "Sports",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "At which bridge does the annual Oxford and Cambridge boat race start?",
+    "correct_answer": "Putney",
+    "incorrect_answers": [
+      "Hammersmith",
+      "Vauxhall ",
+      "Battersea"
+    ]
+  },
+  {
+    "category": "Entertainment: Video Games",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "Who is Sonic&#039;s sidekick?",
+    "correct_answer": "Tails",
+    "incorrect_answers": [
+      "Shadow",
+      "Amy",
+      "Knuckles"
+    ]
+  },
+  {
+    "category": "Politics",
+    "type": "boolean",
+    "difficulty": "easy",
+    "question": "There was a satirical candidate named &quot;Deez Nuts&quot; running in the 2016 US presidential elections.",
+    "correct_answer": "True",
+    "incorrect_answers": [
+      "False"
+    ]
+  }]
+  let wrapper;
+  beforeEach(() => {
+    wrapper = shallow(
+      <Board setQuestions={actions.setQuestions} setCurrentQuestion={actions.setCurrentQuestion}
+        increaseTurnCount={actions.increaseTurnCount}
+        setCurrentTeam={actions.setCurrentTeam}
+        updateScore={actions.updateScore}
+        setHaveWinner={actions.setHaveWinner}
+        questions={mockQuestions}
+        teams={mockTeams}
+        currentQuestion={mockCurrentQuestion}
+        turnCount={0}
+        currentTeam={mockTeams[0]}
+      />
+      )
+  })
+  it('should remove a question from the questions array', () => {
+    expect(wrapper.instance().props.questions.length).toEqual(2)
+    wrapper.instance().updateCurrentQuestion()
+    expect(wrapper.instance().props.questions.length).toEqual(1)
+  })
+  it('should call setQuestions', () => {
+    wrapper.instance().updateCurrentQuestion()
+    expect(actions.setQuestions).toHaveBeenCalledWith(mockQuestions)
+  })
+  it('should call setCurrentQuestion', () => {
+    wrapper.instance().updateCurrentQuestion()
+    expect(actions.setCurrentQuestion).toHaveBeenCalledWith(mockCurrentQuestion)
+  })
+})
+
+describe('submitAnswer', () => {
+  const mockQuestions = [{
+    "category": "Sports",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "At which bridge does the annual Oxford and Cambridge boat race start?",
+    "correct_answer": "Putney",
+    "incorrect_answers": [
+      "Hammersmith",
+      "Vauxhall ",
+      "Battersea"
+    ]
+  },
+  {
+    "category": "Entertainment: Video Games",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "Who is Sonic&#039;s sidekick?",
+    "correct_answer": "Tails",
+    "incorrect_answers": [
+      "Shadow",
+      "Amy",
+      "Knuckles"
+    ]
+  },
+  {
+    "category": "Politics",
+    "type": "boolean",
+    "difficulty": "easy",
+    "question": "There was a satirical candidate named &quot;Deez Nuts&quot; running in the 2016 US presidential elections.",
+    "correct_answer": "True",
+    "incorrect_answers": [
+      "False"
+    ]
+    }, {
+      "category": "Sports",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "What team won the 2016 MLS Cup?",
+      "correct_answer": "Seattle Sounders",
+      "incorrect_answers": [
+        "Colorado Rapids",
+        "Toronto FC",
+        "Montreal Impact"
+      ]
+    },
+    {
+      "category": "General Knowledge",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "What was the first ever London Underground line to be built?",
+      "correct_answer": "Metropolitan Line",
+      "incorrect_answers": [
+        "Circle Line",
+        "Bakerloo Line",
+        "Victoria Line"
+      ]
+    }]
+  let wrapper;
+  beforeEach(() => {
+    wrapper = shallow(
+      <Board setQuestions={actions.setQuestions} setCurrentQuestion={actions.setCurrentQuestion}
+        increaseTurnCount={actions.increaseTurnCount}
+        setCurrentTeam={actions.setCurrentTeam}
+        updateScore={actions.updateScore}
+        setHaveWinner={actions.setHaveWinner}
+        questions={mockQuestions}
+        teams={mockTeams}
+        currentQuestion={mockCurrentQuestion}
+        turnCount={0}
+        currentTeam={mockTeams[0]}
+      />
+      )
+  })
+
+  it('should call updateCurrentQuestion', () => {
+    const mockEvent = { target: { name: 'mock' } }
+    wrapper.instance().updateCurrentQuestion = jest.fn()
+    wrapper.instance().forceUpdate();
+    wrapper.instance().submitAnswer(mockEvent)
+    expect(wrapper.instance().updateCurrentQuestion).toHaveBeenCalled()
+  })
+  it('call increaseTurnCount', () => {
+    const mockEvent = {target: {name:'mock'}}
+    wrapper.instance().submitAnswer(mockEvent)
+    expect(actions.increaseTurnCount).toHaveBeenCalled()
+  })
+  it('should call determineCurrentTeam', () => {
+    const mockEvent = {target: {name: 'Deb'}}
+    wrapper.instance().submitAnswer(mockEvent)
+    expect(helpers.determineCurrentTeam).toHaveBeenCalled()
+  })
+  it('should call setCurrentTeam', () => {
+    const mockEvent = { target: { name: 'Deb' } }
+    wrapper.instance().submitAnswer(mockEvent)
+    expect(actions.setCurrentTeam).toHaveBeenCalledWith(mockTeams[0])
+  })
+  it('if the answer is correct it should call updateScore', () => {
+    const mockEvent = {target: {name: 'Putney'}}
+    wrapper.instance().submitAnswer(mockEvent)
+    expect(actions.increaseTurnCount).toHaveBeenCalled()
+  })
+  it('should update the score if the answer is correct', () => {
+    const mockEvent = { target: { name: 'Putney' } }
+    expect(wrapper.instance().props.currentTeam.score).toEqual(1)
+    wrapper.instance().submitAnswer(mockEvent)
+    expect(wrapper.instance().props.currentTeam.score).toEqual(2)
+  })
+  it('should NOT update the score if the answer is wrong', () => {
+    const mockEvent = { target: { name: 'Debra' } }
+    expect(wrapper.instance().props.currentTeam.score).toEqual(2)
+    wrapper.instance().submitAnswer(mockEvent)
+    expect(wrapper.instance().props.currentTeam.score).toEqual(2)
+  })
+  it('if there are no questions left it should call setHaveWinner', () => {
+    const mockEvent = { target: { name: 'Debra' } }
+    wrapper.instance().submitAnswer(mockEvent)
+    expect(actions.setHaveWinner).toHaveBeenCalled()
+  })
+  it('if there are no questions left it should return null', () => {
+    const mockEvent = { target: { name: 'Debra' } }
+    expect(wrapper.instance().submitAnswer(mockEvent)).toEqual(null)
   })
 })

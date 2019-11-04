@@ -31,7 +31,7 @@ exports[`Board should match the initial snapshot 1`] = `
         <h3
           className="category"
         >
-          Politics
+          Sports
         </h3>
         <h3
           className="difficulty"
@@ -40,7 +40,7 @@ exports[`Board should match the initial snapshot 1`] = `
       <h2
         className="question"
       >
-        There was a satirical candidate named &quot;Deez Nuts&quot; running in the 2016 US presidential elections.
+        At which bridge does the annual Oxford and Cambridge boat race start?
       </h2>
       <div
         className="answers-div"
@@ -48,8 +48,10 @@ exports[`Board should match the initial snapshot 1`] = `
         <Answers
           answers={
             Array [
-              "True",
-              "False",
+              "Putney",
+              "Hammersmith",
+              "Vauxhall ",
+              "Battersea",
             ]
           }
           submitAnswer={[Function]}
