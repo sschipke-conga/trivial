@@ -1,0 +1,88 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Board should match the initial snapshot 1`] = `
+<div
+  className="board"
+>
+  <div
+    className="board-team-one"
+  >
+    <h1
+      className="team-one-name"
+    >
+      Lez Quizzerable
+    </h1>
+    <h3
+      className="score"
+    >
+      Score: 
+      0
+    </h3>
+  </div>
+  <div
+    className="question-div"
+  >
+    <div
+      className="question-header-div"
+    >
+      <div
+        className="question-headers"
+      >
+        <h3
+          className="category"
+        >
+          Politics
+        </h3>
+        <h3
+          className="difficulty"
+        />
+      </div>
+      <h2
+        className="question"
+      >
+        There was a satirical candidate named &quot;Deez Nuts&quot; running in the 2016 US presidential elections.
+      </h2>
+      <div
+        className="answers-div"
+      >
+        <Answers
+          answers={
+            Array [
+              "True",
+              "False",
+            ]
+          }
+          submitAnswer={[Function]}
+        />
+        <h4>
+          <span
+            className="current-team"
+          >
+            Lez Quizzerable
+          </span>
+          , your turn!
+        </h4>
+        <h5>
+          4
+           questions left
+        </h5>
+      </div>
+    </div>
+  </div>
+  <div
+    className="board-team-two"
+  >
+    <h1
+      className="team-one-name"
+    >
+      Let's Get Quizzacle
+    </h1>
+    <h3
+      className="score"
+    >
+      Score: 
+      0
+    </h3>
+  </div>
+</div>
+`;
