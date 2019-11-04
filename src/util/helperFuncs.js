@@ -35,3 +35,12 @@ export const cleanEncoding = (string) => {
   .replace(/&eacute/g, 'é');
   return cleanPhrase
 }
+
+export const cleanQuestions = (questions) => {
+    return questions.map(question => {
+    question.question = cleanEncoding(question.question)
+    question.correct_answer = cleanEncoding(question.correct_answer)
+    question.incorrect_answers = question.incorrect_answers.map(answer => cleanEncoding(answer))
+    return question
+    })
+}
