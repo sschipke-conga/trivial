@@ -27,6 +27,16 @@ describe('EndGame', () => {
   it('should call determineWinner', () => {
     expect(determineWinner).toHaveBeenCalledWith(mockTeams)
   })
+  it('mapStateToProps gives all the teams to state', () => {
+    const mockState = {
+      teams: mockTeams
+    };
+    const expected = {
+      teams: mockState.teams
+    };
+    const mappedProps = mapStateToProps(mockState)
+    expect(mappedProps).toEqual(expected)
+  })
 })
 
 describe('EndGame with ties', () => {
