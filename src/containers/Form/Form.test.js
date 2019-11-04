@@ -50,11 +50,26 @@ fetchQuestions.mockImplementation(() => {
   })
 })
 
+const mockTeams = [{
+  name: 'Lez Quizzerable',
+  score: 0
+}, {
+  name: "Let's Get Quizzacle",
+  score: 0
+}]
+actions.setTeams = jest.fn().mockImplementation(() => {
+  return mockTeams
+})
+
+actions.haveQuestions = jest.fn()
+
+actions.setQuestions = jest.fn()
+
 describe('Form', () => {
   let wrapper;
   beforeEach(() => {
     wrapper = shallow(
-      <Form />
+      <Form setTeams={actions.setTeams} setHaveQuestions={actions.setHaveQuestions} setQuestions={actions.setQuestions}/>
     )
   })
   it('should match the initial snapshot', () => {
@@ -135,6 +150,18 @@ describe('Form', () => {
       wrapper.find('form').simulate('submit', mockEvent);
       expect(wrapper.instance().handleSubmit).toHaveBeenCalledWith(mockEvent)
     })
-
+  })
+  describe('handleTeams', () => {
+    it('should call setTeams', () => {
+      wrapper.instance().setState({ teamOne: 'Lez Quizzerable', teamTwo: "Let's Get Quizzacle"})
+      wrapper.instance().handleTeams();
+      expect(actions.setTeams).toHaveBeenCalledWith(mockTeams)
+    })
+  })
+  describe('handleQuestions', () => {
+    it('should call fetchQuestions', () => {
+      wrapper.instance().handleQuestions();
+      expect(fetchQuestions).toHaveBeenCalled()
+    })
   })
 })
