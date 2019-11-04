@@ -303,3 +303,67 @@ describe('submitAnswer', () => {
     expect(wrapper.instance().submitAnswer(mockEvent)).toEqual(null)
   })
 })
+
+describe('mapDispatchToProps and mapStateToProps', () => {
+  it('should call Dispatch with setQuestions actions when setQuestions is called', () => {
+    const mockDispatch = jest.fn();
+    const actionToDispatch = actions.setQuestions('SET_QUESTIONS', mockQuestions)
+    const mappedProps = mapDispatchToProps(mockDispatch)
+    mappedProps.setQuestions('SET_QUESTIONS', mockQuestions)
+    expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch)
+  })
+  it('should call Dispatch with setCurrnetQuestion actions when setCurrentQuestion is called', () => {
+    const mockDispatch = jest.fn();
+    const actionToDispatch = actions.setCurrentQuestion('SET_CURRENT_QUESTION', mockCurrentQuestion)
+    const mappedProps = mapDispatchToProps(mockDispatch)
+    mappedProps.setCurrentQuestion('SET_QUESTIONS', mockCurrentQuestion)
+    expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch)
+  })
+  it('should call Dispatch with increaseTurnCount actions when increaseTurnCount is called', () => {
+    const mockDispatch = jest.fn();
+    const actionToDispatch = actions.increaseTurnCount('INCREASE_TURN_COUNT')
+    const mappedProps = mapDispatchToProps(mockDispatch)
+    mappedProps.increaseTurnCount('INCREASE_TURN_COUNT')
+    expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch)
+  })
+  it('should call Dispatch with setCurrentTeam actions when setCurrentTeam is called', () => {
+    const mockDispatch = jest.fn();
+    const actionToDispatch = actions.setCurrentTeam('SET_CURRENT_TEAM')
+    const mappedProps = mapDispatchToProps(mockDispatch)
+    mappedProps.setCurrentTeam('SET_CURRENT_TEAM', mockTeams[0])
+    expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch)
+  })
+  it('should call Dispatch with updateScore actions when updateScore is called', () => {
+    const mockDispatch = jest.fn();
+    const actionToDispatch = actions.updateScore('UPDATE_SCORE')
+    const mappedProps = mapDispatchToProps(mockDispatch)
+    mappedProps.updateScore('UPDATE_SCORE')
+    expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch)
+  })
+  it('should call Dispatch with setHaveWinner actions when setHaveWinner is called', () => {
+    const mockDispatch = jest.fn();
+    const actionToDispatch = actions.setHaveWinner('WINNER')
+    const mappedProps = mapDispatchToProps(mockDispatch)
+    mappedProps.setHaveWinner('WINNER')
+    expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch)
+  })
+  it('mapStateToProps gives all the questions, teams, and turnCount in state', () => {
+    const mockState = {
+      questions: mockQuestions,
+      currentQuestion: mockCurrentQuestion,
+      teams: mockTeams,
+      turnCount: 1,
+      currentTeam: mockTeams[0]
+    };
+    const expected = {
+      questions: mockState.questions,
+      teams: mockState.teams,
+      currentQuestion: mockState.currentQuestion,
+      turnCount: mockState.turnCount,
+      currentTeam: mockState.currentTeam
+    };
+    const mappedProps = mapStateToProps(mockState)
+
+    expect(mappedProps).toEqual(expected)
+  })
+})
