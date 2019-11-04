@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {shuffle} from '../../util/helperFuncs';
 import './Answers.scss';
 
@@ -13,4 +14,9 @@ const Answers = ({answers, submitAnswer}) => {
   )
 }
 
-export default Answers
+export default Answers;
+
+Answers.propTypes = {
+  answers: PropTypes.array.isRequired,
+  submitAnswer: PropTypes.func.isRequired
+}

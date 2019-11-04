@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import {determineWinner} from '../../util/helperFuncs';
+import loadingImg from '../../images/loadingGIF.gif'
 
 
 //components
@@ -15,6 +15,11 @@ export const App = ({ teams, questions, haveWinner, haveQuestions }) => {
   return (
     <div className="app">
       {!questions.length && !teams.length && <Route exact path='/' render={(props) => <Form {...props} />} />}
+      {teams.length && !haveQuestions && 
+      <div className="loading-div">
+      <img className="loading-image" src={loadingImg} alt="loading: three circles"/>
+      </div>
+      }
       {haveQuestions  && !haveWinner && <Route path='/' render={(props) => <Board {...props} />} />}
       {haveWinner && <EndGame />}
     </div>
@@ -29,3 +34,11 @@ export const mapStateToProps = (state) => ({
 })
 
 export default connect(mapStateToProps)(App);
+
+App.propTypes = {
+  teams: PropTypes.array,
+  questions: PropTypes.array,
+  currentQuestion: PropTypes.object,
+  haveWinner: PropTypes.bool,
+  haveQuestions: PropTypes.bool
+}

@@ -66,6 +66,7 @@ describe('App', () => {
       questions={mockQuestions}
       haveWinner={false}
       haveQuestions={true}
+      teams={mockTeams}
       />)
   })
   it('should match the snapshot', () => {
@@ -117,6 +118,21 @@ describe('App and Form', () => {
     />)
   })
   it('should render the Form component if there are no teams and no questions', () => {
+    expect(wrapper).toMatchSnapshot()
+  })
+})
+
+describe('App and loading image', () => {
+  let wrapper;
+  beforeEach(() => {
+    wrapper = shallow(<App
+      haveWinner={false}
+      teams={['a', 'b']}
+      questions={[]}
+      haveQuestions={false}
+    />)
+  })
+  it('should render the loading image if there are teams but no questions', () => {
     expect(wrapper).toMatchSnapshot()
   })
 })
