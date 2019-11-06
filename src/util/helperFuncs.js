@@ -39,7 +39,7 @@ export const cleanEncoding = (string) => {
 }
 
 export const cleanQuestions = (questions) => {
-    return questions.map(question => {
+    return questions.map((question, i) => {
     question.question = cleanEncoding(question.question)
     question.correct_answer = cleanEncoding(question.correct_answer)
     question.incorrect_answers = question.incorrect_answers.map(answer => cleanEncoding(answer))
