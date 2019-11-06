@@ -4,7 +4,19 @@ exports[`App and EndGame should render the EndGame component if there is a winne
 <div
   className="app"
 >
-  <Connect(EndGame) />
+  <Route
+    exact={true}
+    path="/"
+    render={[Function]}
+  />
+  <Route
+    path="/questions/"
+    render={[Function]}
+  />
+  <Route
+    path="/winner/"
+    render={[Function]}
+  />
 </div>
 `;
 
@@ -25,6 +37,11 @@ exports[`App and loading image should render the loading image if there are team
 <div
   className="app"
 >
+  <Route
+    exact={true}
+    path="/"
+    render={[Function]}
+  />
   <div
     className="loading-div"
   >
@@ -42,7 +59,12 @@ exports[`App should match the snapshot 1`] = `
   className="app"
 >
   <Route
+    exact={true}
     path="/"
+    render={[Function]}
+  />
+  <Route
+    path="/questions/"
     render={[Function]}
   />
 </div>

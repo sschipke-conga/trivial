@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import {setTeams, setQuestions, setHaveQuestions} from '../../actions/index';
@@ -14,7 +15,8 @@ export class Form extends Component {
       teamTwo: '',
       amount: '',
       category: '',
-      difficulty: ''
+      difficulty: '',
+      isComplete: false
     }
   }
 
@@ -26,6 +28,7 @@ export class Form extends Component {
     e.preventDefault()
     this.handleQuestions()
     this.handleTeams()
+    this.setState({isComplete: true})
   }
 
   handleTeams = () => {
@@ -51,7 +54,7 @@ export class Form extends Component {
   }
 
   render() {
-    const { teamOne, amount, category, difficulty, teamTwo } = this.state;
+    const { teamOne, amount, category, difficulty, teamTwo, isComplete } = this.state;
     return (
       <form onSubmit={this.handleSubmit}>
         <div className="team1-div">
@@ -84,6 +87,7 @@ export class Form extends Component {
             <option value="hard">Hard</option>
           </select>
           <button className="play-button" type="submit">Play!</button>
+          {isComplete && <Link className='continue' to={`/questions/`}>Continue</Link>}
         </div>
         <div className="team2-div">
           <label htmlFor="name-team1">Name of team two</label>

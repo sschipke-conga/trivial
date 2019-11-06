@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
@@ -45,7 +46,10 @@ export class Board extends Component {
   }
 
   render() {
-    const {teams, currentQuestion, currentTeam, questions} = this.props
+    const {teams, currentQuestion, currentTeam, questions, haveWinner} = this.props
+    if(haveWinner) {
+      return <Redirect to="/winner/" />
+    }
     return (
       <div className="board">
         <div className="board-team-one">
@@ -63,6 +67,7 @@ export class Board extends Component {
             <h4><span className="current-team">{currentTeam.name}</span>, your turn!</h4>
             {questions.length !== 0 && <h5>{questions.length+1} questions left</h5>}
             {questions.length === 0 && <h5>Last question!</h5>}
+
             </div>
           </div>}
         </div>
@@ -80,7 +85,8 @@ export const mapStateToProps = state => ({
   teams: state.teams,
   currentQuestion: state.currentQuestion,
   turnCount: state.turnCount,
-  currentTeam: state.currentTeam
+  currentTeam: state.currentTeam,
+  haveWinner: state.haveWinner
 })
 
 export const mapDispatchToProps = dispatch => bindActionCreators({setQuestions, setCurrentQuestion, increaseTurnCount, setCurrentTeam, updateScore, setHaveWinner}, dispatch)

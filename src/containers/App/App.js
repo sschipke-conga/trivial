@@ -14,14 +14,14 @@ import './App.scss';
 export const App = ({ teams, questions, haveWinner, haveQuestions }) => {
   return (
     <div className="app">
-      {!questions.length && !teams.length && <Route exact path='/' render={(props) => <Form {...props} />} />}
+      <Route exact path="/" render={ (props) => <Form {...props} />} />
       {teams.length && !haveQuestions && 
       <div className="loading-div">
       <img className="loading-image" src={loadingImg} alt="loading: three circles"/>
       </div>
       }
-      {haveQuestions  && !haveWinner && <Route path='/' render={(props) => <Board {...props} />} />}
-      {haveWinner && <EndGame />}
+      {haveQuestions && <Route path="/questions/" render={(props) => <Board {...props} />} />}
+      {haveWinner&& <Route path="/winner/" render={(props) => <EndGame {...props} />}/>}
     </div>
   )}
 
